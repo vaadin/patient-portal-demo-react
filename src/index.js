@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRedirect } from 'react-router';
 // Import App
 import App from './App';
 // Import Login
@@ -29,6 +29,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="login" component={Login}/>
     <Route path="/" component={App}>
+    <IndexRedirect to="/patients" />
       <Route path="patients" component={Patients}>
         <Route path="/patients/new" component={PatientNew}/>
         <Route path="/patients/:patientId/profile" component={PatientProfile}/>

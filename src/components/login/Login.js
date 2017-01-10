@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import Auth from '../../services/AuthService';
+import LoginActions from '../../actions/LoginActions';
 
 class Login extends Component {
   constructor(props) {
@@ -14,6 +15,11 @@ class Login extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    var jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      LoginActions.loginUser(jwt);
+    }
   }
   handleUsernameChange(event) {
     this.setState({username: event.target.value});
