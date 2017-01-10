@@ -5,6 +5,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import App from './App';
 // Import Login
 import Login from './login/Login';
+import LoginActions from './actions/LoginActions';
 // Import Patients
 import Patients from './patients/Patients';
 import PatientNew from './patients/PatientNew';
@@ -16,6 +17,13 @@ import PatientJournalNew from './patients/PatientJournalNew';
 import Analytics from './analytics/Analytics';
 // Import CSS
 import './index.css';
+
+let jwt = localStorage.getItem('jwt');
+if (jwt) {
+  LoginActions.loginUser(jwt);
+} else if (browserHistory.getCurrentLocation().pathname !== '/login') {
+  browserHistory.push('/login');
+}
 
 ReactDOM.render(
   <Router history={browserHistory}>

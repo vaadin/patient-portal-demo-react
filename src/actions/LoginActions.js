@@ -1,4 +1,5 @@
 import AppDispatcher from '../dispatchers/AppDispatcher.js';
+import { browserHistory } from 'react-router';
 
 export default {
   loginUser: (jwt) => {
@@ -9,7 +10,10 @@ export default {
       jwt: jwt
     });
 
-    if (savedJwt !== jwt) {
+    if (savedJwt === jwt && browserHistory.getCurrentLocation().pathname === '/login') {
+      browserHistory.push('/');
+    } else if (savedJwt !== jwt) {
+      browserHistory.push('/');
       /*var nextPath = RouterContainer.get().getCurrentQuery().nextPath || '/';
 
       RouterContainer.get().transitionTo(nextPath);*/
@@ -24,5 +28,6 @@ export default {
     AppDispatcher.dispatch({
       actionType: 'LOGOUT_USER'
     });
+    browserHistory.push('/login');
   }
 };
