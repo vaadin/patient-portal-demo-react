@@ -14,8 +14,8 @@ class App extends Component {
     return (
       <div className="container">
         <nav className="menu">
-          <Link to={`/patients`}>Patients</Link>
-          <Link to={`/analytics`}>Patients</Link>
+          <Link to={`/patients`} activeClassName="active">Patients</Link>
+          <Link to={`/analytics`} activeClassName="active">Patients</Link>
           <Link to={`/login`} className="right" onClick={this.logOut}><i className="fa fa-sign-out"></i> Logout</Link>
         </nav>
         <div className="content">
