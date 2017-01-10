@@ -4,17 +4,17 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 // Import App
 import App from './App';
 // Import Login
-import Login from './login/Login';
+import Login from './components/login/Login';
 import LoginActions from './actions/LoginActions';
 // Import Patients
-import Patients from './patients/Patients';
-import PatientNew from './patients/PatientNew';
-import PatientProfile from './patients/PatientProfile';
-import PatientProfileEdit from './patients/PatientProfileEdit';
-import PatientJournal from './patients/PatientJournal';
-import PatientJournalNew from './patients/PatientJournalNew';
+import Patients from './components/patients/Patients';
+import PatientNew from './components/patients/PatientNew';
+import PatientProfile from './components/patients/PatientProfile';
+import PatientProfileEdit from './components/patients/PatientProfileEdit';
+import PatientJournal from './components/patients/PatientJournal';
+import PatientJournalNew from './components/patients/PatientJournalNew';
 // Import Analytics
-import Analytics from './analytics/Analytics';
+import Analytics from './components/analytics/Analytics';
 // Import CSS
 import './index.css';
 
