@@ -58,9 +58,9 @@ class Patients extends Component {
     super();
     this.initializeValues();
     this.initializeRouting();
-    this.updatePatients();
   }
   componentDidMount() {
+    this.updatePatients();
     this.setSideDivClass(location.pathname === '/patients');
   }
   componentWillUnmount() {
@@ -90,55 +90,57 @@ class Patients extends Component {
     return (
       <div className="total-width">
         <Link to={`/patients/new`} activeClassName="active" className="button primary add"><i className="fa fa-plus"></i> Add new patient</Link>
-        <Table
-          rowsCount={this.state.patients.length}
-          rowHeight={36}
-          headerHeight={50}
-          width={this.props.containerWidth}
-          height={this.props.containerHeight}
-          className="table">
-          <Column
-            header={<Cell className="table-header">NAME</Cell>}
-            cell={
-              <NameCell
-                data={this.state.patients}
-              />
-            }
-            width={200}
-          />
-          <Column
-            header={<Cell className="table-header">ID</Cell>}
-            cell={
-              <TextCell
-                data={this.state.patients}
-                field="id"
-              />
-            }
-            flexGrow={2}
-            width={50}
-          />
-          <Column
-            header={<Cell className="table-header">DOCTOR</Cell>}
-            cell={
-              <DoctorCell
-                data={this.state.patients}
-              />
-            }
-            flexGrow={1}
-            width={200}
-          />
-          <Column
-            header={<Cell className="table-header">LAST ENTRY</Cell>}
-            cell={
-              <DateCell
-                data={this.state.patients}
-                field="lastEntry"
-              />
-            }
-            flexGrow={1}
-            width={200}
-          />
-        </Table>
+        <div className="table-container">
+          <Table
+            rowsCount={this.state.patients.length}
+            rowHeight={36}
+            headerHeight={50}
+            width={this.props.containerWidth}
+            height={this.props.containerHeight}
+            className="table">
+            <Column
+              header={<Cell className="table-header">NAME</Cell>}
+              cell={
+                <NameCell
+                  data={this.state.patients}
+                />
+              }
+              width={200}
+            />
+            <Column
+              header={<Cell className="table-header">ID</Cell>}
+              cell={
+                <TextCell
+                  data={this.state.patients}
+                  field="id"
+                />
+              }
+              flexGrow={2}
+              width={50}
+            />
+            <Column
+              header={<Cell className="table-header">DOCTOR</Cell>}
+              cell={
+                <DoctorCell
+                  data={this.state.patients}
+                />
+              }
+              flexGrow={1}
+              width={200}
+            />
+            <Column
+              header={<Cell className="table-header">LAST ENTRY</Cell>}
+              cell={
+                <DateCell
+                  data={this.state.patients}
+                  field="lastEntry"
+                />
+              }
+              flexGrow={1}
+              width={200}
+            />
+          </Table>
+        </div>
         <div className={this.state.sideDivClass}>
           {this.props.children}
         </div>

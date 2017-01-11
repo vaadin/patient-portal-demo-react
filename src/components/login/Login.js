@@ -44,11 +44,11 @@ class Login extends Component {
             <form onSubmit={this.handleSubmit}>
               <div className="field stacked">
                 <label htmlFor="username">Username</label>
-                <input autoFocus id="username" type="text" name="username" autoComplete="username" value={this.state.username} onChange={this.handleUsernameChange} />
+                <input autoFocus id="username" type="text" name="username" autoComplete="username" value={this.state.username} onChange={this.handleUsernameChange} required />
               </div>
               <div className="field stacked">
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" name="password" autoComplete="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                <input id="password" type="password" name="password" autoComplete="password" value={this.state.password} onChange={this.handlePasswordChange} required />
               </div>
               <button type="submit" className="primary">Login</button>
             </form>
