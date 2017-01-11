@@ -17,11 +17,9 @@
   border-width: 0 !important;
 }
 
-
-:host {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.fixedDataTableCellGroupLayout_cellGroup:hover > div {
+  background-color: #dadada;
+  cursor: pointer;
 }
 
 .button.add {
