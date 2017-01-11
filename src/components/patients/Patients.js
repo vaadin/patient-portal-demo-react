@@ -4,7 +4,7 @@ import './Patients.css';
 import {Table, Column, Cell} from 'fixed-data-table';
 import Dimensions from 'react-dimensions';
 import PatientsService from '../../services/PatientsService';
-import { Link } from 'react-router';
+import { Link, browserHistory  } from 'react-router';
 
 class TextCell extends Component {
   render() {
@@ -56,21 +56,34 @@ class DateCell extends Component {
 class Patients extends Component {
   constructor() {
     super();
-    this.initializePatients();
+    this.initializeValues();
+    this.initializeRouting();
     this.updatePatients();
   }
-  initializePatients() {
+  componentDidMount() {
+    this.setSideDivClass(location.pathname === '/patients');
+  }
+  componentWillUnmount() {
+    this.unListenBrowserHistory();
+  }
+  initializeValues() {
     this.state = {
       patients: [],
+      sideDivClass: ''
     };
+  }
+  initializeRouting() {
+    this.unListenBrowserHistory = browserHistory.listen( location =>  {
+      this.setSideDivClass(location.pathname === '/patients');
+    });
+  }
+  setSideDivClass(patientsRoute) {
+    this.setState({sideDivClass: patientsRoute ? 'details' : 'details open'});
   }
   updatePatients() {
     PatientsService.getPatients()
       .done((patients) => {
-        this.state = {
-          patients: patients
-        };
-        this.forceUpdate();
+        this.setState({patients: patients});
       });
   }
   render() {
@@ -126,6 +139,9 @@ class Patients extends Component {
             width={200}
           />
         </Table>
+        <div className={this.state.sideDivClass}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
