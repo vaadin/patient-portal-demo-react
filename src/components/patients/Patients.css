@@ -1,0 +1,70 @@
+.table-header {
+  background-color: #9DD22D;
+  text-transform: uppercase;
+  border-color: transparent;
+  color: #FFFFFF;
+}
+
+.table {
+  border-color: transparent;
+}
+
+.total-width div {
+  border-color: transparent !important;
+}
+
+.fixedDataTableCellLayout_main {
+  border-width: 0 !important;
+}
+
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.button.add {
+  align-self: flex-end;
+  margin-bottom: 1rem;
+}
+
+.name {
+  font-weight: bolder;
+}
+
+.details {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 16px;
+  top: 0;
+  left: 100%;
+  height: 100vh;
+  background: #fff;
+  border-left: 5px solid #434D54;
+}
+
+.details.open {
+  left: 25%;
+  right: 0;
+  box-shadow: 2px 2px 10px 8px rgba(0, 0, 0, 0.2);
+}
+
+.details-row {
+  margin: 1rem auto;
+}
+
+.details-row label {
+  width: 50%;
+  text-align: right;
+  padding-right: 0.5rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .details.open {
+    left: 0;
+    box-shadow: none;
+    border: none;
+  }
+}
