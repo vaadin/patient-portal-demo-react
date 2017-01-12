@@ -22,6 +22,7 @@ class PatientEdit extends Component {
     this.handleSsnChange = this.handleSsnChange.bind(this);
     this.handleDoctorChange = this.handleDoctorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deletePatient = this.deletePatient.bind(this);
 
     if (!PatientsStore.currentPatientId) {
       PatientActions.setCurrentPatient(location.pathname.replace('/patients/', '').replace('/profile', '').replace('/edit', ''));
@@ -32,7 +33,7 @@ class PatientEdit extends Component {
     this.patientChangeListener = this._onPatientChange.bind(this);
     PatientsStore.addChangeListener(this.patientChangeListener);
 
-    if(Object.keys(PatientsStore.currentPatient).length !== 0) {
+    if (Object.keys(PatientsStore.currentPatient).length !== 0) {
       this._onPatientChange();
     }
   }
@@ -40,9 +41,11 @@ class PatientEdit extends Component {
     PatientsStore.removeChangeListener(this.patientChangeListener);
   }
   _onPatientChange() {
-    var patient = JSON.parse(JSON.stringify(PatientsStore.currentPatient)); // create a clone
-    patient.doctorId = patient.doctor.id;
-    this.setState({patient: patient});
+    if (PatientsStore.currentPatient) {
+      var patient = JSON.parse(JSON.stringify(PatientsStore.currentPatient)); // create a clone
+      patient.doctorId = patient.doctor.id;
+      this.setState({patient: patient});
+    }
   }
   getDoctors() {
     PatientsService.getDoctors()
@@ -54,14 +57,20 @@ class PatientEdit extends Component {
     event.preventDefault();
     PatientsService.updatePatient(this.state.patient)
       .done((res) => {
-        PatientsService.getPatients().
-        done(() => {
+        PatientsService.getPatients()
+        .done(() => {
           browserHistory.push('/patients/' + PatientsStore.currentPatientId + '/profile');
         });
       });
   }
   deletePatient() {
-    console.log('delete patient');
+    PatientsService.deleteCurrentPatient(this.state.patient.id)
+      .done((res) => {
+        PatientsService.getPatients()
+        .done(() => {
+          browserHistory.push('/patients');
+        });
+      });
   }
   handleTitleChange(event) {
     var patient = this.state.patient;

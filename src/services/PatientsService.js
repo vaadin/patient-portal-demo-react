@@ -49,8 +49,18 @@ class PatientsService {
     }));
   }
 
-  deleteCurrentPatient() {
-
+  deleteCurrentPatient(id) {
+    return when(request({
+      url: 'http://localhost:8080/patients/' + id,
+      method: 'DELETE',
+      crossOrigin: true,
+      type: 'json',
+      headers: {
+        'authorization': LoginStore.jwt
+      },
+      contentType: 'application/json',
+      processData: false
+    }));
   }
 
   savePatient(patient) {

@@ -22,6 +22,11 @@ class PatientsStore extends BaseStore {
         this._setCurrentPatient();
         this.emitChange();
         break;
+      case 'CLEAR_CURRENT_PATIENT':
+        this._currentPatientId = null;
+        this._currentPatient = {};
+        this.emitChange();
+        break;
       default:
         break;
     }
@@ -29,14 +34,10 @@ class PatientsStore extends BaseStore {
 
   _setCurrentPatient() {
     if (this._patients.length > 0 && this._currentPatientId) {
-      var a = this._patients
+      this._currentPatient = this._patients
         .filter((patient) => {
           return patient.id === parseInt(this._currentPatientId, 10);
         })[0];
-
-      this._currentPatient = a;
-
-      //this.emitChange();
     }
   }
 

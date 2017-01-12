@@ -11,7 +11,7 @@ nav.details-nav {
   justify-content: space-between;
   text-transform: uppercase;
   margin-bottom: 50px;
-
+  padding-top: 12px;
 }
 
 nav.details-nav a {
