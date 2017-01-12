@@ -41,8 +41,11 @@ class PatientNew extends Component {
   handleSubmit(event) {
     event.preventDefault();
     PatientsService.savePatient(this.state)
-      .done((res) => {
-        browserHistory.push('/patients');
+      .done(() => {
+        PatientsService.getPatients()
+        .done(() => {
+          browserHistory.push('/patients');
+        });
       });
   }
   handleTitleChange(event) {

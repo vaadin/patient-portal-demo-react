@@ -105,7 +105,7 @@ class Patients extends Component {
             rowHeight={36}
             headerHeight={50}
             width={this.props.containerWidth}
-            height={this.props.containerHeight}
+            height={this.props.containerHeight - 40}
             className="table">
             <Column
               header={<Cell className="table-header">NAME</Cell>}
