@@ -11,7 +11,7 @@ import Patients from './components/patients/Patients';
 import PatientNew from './components/patients/patientnew/PatientNew';
 import PatientDetailContainer from './components/patients/patientdetailcontainer/PatientDetailContainer';
 import PatientProfile from './components/patients/patientprofile/PatientProfile';
-import PatientProfileEdit from './components/patients/PatientProfileEdit';
+import PatientEdit from './components/patients/patientedit/PatientEdit';
 import PatientJournal from './components/patients/PatientJournal';
 import PatientJournalNew from './components/patients/PatientJournalNew';
 // Import Analytics
@@ -38,10 +38,10 @@ ReactDOM.render(
           <Route path="/patients/:patientId/journal" component={PatientJournal}/>
           <Route path="/patients/:patientId/journal/new" component={PatientJournalNew}/>
         </Route>
-        <Route path="/patients/:patientId/profile/edit" component={PatientProfileEdit}/>
+        <Route path="/patients/:patientId/profile/edit" component={PatientEdit}/>
       </Route>
+      <Route path="analytics" component={Analytics}/>
     </Route>
-    <Route path="analytics" component={Analytics}/>
   </Router>,
   document.getElementById('root')
 );

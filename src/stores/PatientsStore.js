@@ -20,7 +20,6 @@ class PatientsStore extends BaseStore {
       case 'SET_CURRENT_PATIENT':
         this._currentPatientId = action.id;
         this._setCurrentPatient();
-        console.log('emit');
         this.emitChange();
         break;
       default:

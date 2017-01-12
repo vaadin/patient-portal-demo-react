@@ -5,6 +5,7 @@ import {Table, Column, Cell} from 'fixed-data-table';
 import Dimensions from 'react-dimensions';
 import PatientsService from '../../services/PatientsService';
 import PatientActions from '../../actions/PatientActions';
+import PatientsStore from '../../stores/PatientsStore';
 import { Link, browserHistory  } from 'react-router';
 
 class TextCell extends Component {
@@ -87,7 +88,7 @@ class Patients extends Component {
   updatePatients() {
     PatientsService.getPatients()
       .done((patients) => {
-        this.setState({patients: patients});
+        this.setState({patients: PatientsStore.patients}); //needed so React will update the table when PatientsStore.patients change
       });
   }
   openPatient(row) {
@@ -100,7 +101,7 @@ class Patients extends Component {
         <Link to={`/patients/new`} activeClassName="active" className="button primary add"><i className="fa fa-plus"></i> Add new patient</Link>
         <div className="table-container">
           <Table
-            rowsCount={this.state.patients.length}
+            rowsCount={PatientsStore.patients.length}
             rowHeight={36}
             headerHeight={50}
             width={this.props.containerWidth}
@@ -110,7 +111,7 @@ class Patients extends Component {
               header={<Cell className="table-header">NAME</Cell>}
               cell={
                 <NameCell
-                  data={this.state.patients}
+                  data={PatientsStore.patients}
                   parent={this}
                 />
               }
@@ -120,7 +121,7 @@ class Patients extends Component {
               header={<Cell className="table-header">ID</Cell>}
               cell={
                 <TextCell
-                  data={this.state.patients}
+                  data={PatientsStore.patients}
                   field="id"
                   parent={this}
                 />
@@ -132,7 +133,7 @@ class Patients extends Component {
               header={<Cell className="table-header">DOCTOR</Cell>}
               cell={
                 <DoctorCell
-                  data={this.state.patients}
+                  data={PatientsStore.patients}
                   parent={this}
                 />
               }
@@ -143,7 +144,7 @@ class Patients extends Component {
               header={<Cell className="table-header">LAST ENTRY</Cell>}
               cell={
                 <DateCell
-                  data={this.state.patients}
+                  data={PatientsStore.patients}
                   field="lastEntry"
                   parent={this}
                 />

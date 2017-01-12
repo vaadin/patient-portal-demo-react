@@ -77,6 +77,31 @@ class PatientsService {
     }));
   }
 
+  updatePatient(patient) {
+    return when(request({
+      url: 'http://localhost:8080/patients/' + patient.id,
+      method: 'POST',
+      crossOrigin: true,
+      type: 'json',
+      headers: {
+        'authorization': LoginStore.jwt
+      },
+      contentType: 'application/json',
+      processData: false,
+      data: JSON.stringify({
+        id: patient.id,
+        birthdate: patient.birthdate,
+        doctor: patient.doctor,
+        firstName: patient.firstName,
+        gender: patient.gender,
+        lastName: patient.lastName,
+        middleName: patient.middleName,
+        ssn: patient.ssn,
+        title: patient.title
+      })
+    }));
+  }
+
   _sortPatients() {
 
   }

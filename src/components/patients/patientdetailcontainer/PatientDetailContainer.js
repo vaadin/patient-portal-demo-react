@@ -9,7 +9,6 @@ class PatientDetailContainer extends Component {
     super();
     if (!PatientsStore.currentPatientId) {
       PatientActions.setCurrentPatient(location.pathname.replace('/patients/', '').replace('/profile', '').replace('/journal', ''));
-      console.log(PatientsStore._currentPatientId);
     }
   }
   render() {
