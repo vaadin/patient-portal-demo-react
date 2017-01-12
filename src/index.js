@@ -9,7 +9,7 @@ import LoginActions from './actions/LoginActions';
 // Import Patients
 import Patients from './components/patients/Patients';
 import PatientNew from './components/patients/patientnew/PatientNew';
-import PatientProfile from './components/patients/PatientProfile';
+import PatientProfile from './components/patients/patientprofile/PatientProfile';
 import PatientProfileEdit from './components/patients/PatientProfileEdit';
 import PatientJournal from './components/patients/PatientJournal';
 import PatientJournalNew from './components/patients/PatientJournalNew';

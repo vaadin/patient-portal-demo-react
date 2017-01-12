@@ -35,7 +35,6 @@ class PatientNew extends Component {
   getDoctors() {
     PatientsService.getDoctors()
       .done((doctors) => {
-        console.log(doctors);
         this.setState({doctors: doctors});
       });
   }
@@ -70,7 +69,7 @@ class PatientNew extends Component {
   handleDoctorChange(event) {
     this.setState({doctorId: event.target.value});
     this.setState({doctor: this.state.doctors.filter((doctor) => {
-      return doctor.id === parseInt(event.target.value);
+      return doctor.id === parseInt(event.target.value, 10);
     })[0]});
   }
   render() {

@@ -1,11 +1,12 @@
 import request from 'reqwest';
 import when from 'when';
 import LoginStore from '../stores/LoginStore';
+import PatientActions from '../actions/PatientActions';
 
 class PatientsService {
 
   getPatients() {
-    return when(request({
+    return this._handleGetPatients(when(request({
       url: 'http://localhost:8080/patients',
       method: 'GET',
       crossOrigin: true,
@@ -13,7 +14,15 @@ class PatientsService {
       headers: {
         'authorization': LoginStore.jwt
       }
-    }));
+    })));
+  }
+
+  _handleGetPatients(patientsPromise) {
+    return patientsPromise
+      .then(function(patients) {
+        PatientActions.setPatients(patients);
+        return patients;
+      });
   }
 
   setSorting() {
@@ -69,10 +78,6 @@ class PatientsService {
   }
 
   _sortPatients() {
-
-  }
-
-  _parseDates() {
 
   }
 }

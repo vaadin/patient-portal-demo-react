@@ -4,13 +4,14 @@ import './Patients.css';
 import {Table, Column, Cell} from 'fixed-data-table';
 import Dimensions from 'react-dimensions';
 import PatientsService from '../../services/PatientsService';
+import PatientActions from '../../actions/PatientActions';
 import { Link, browserHistory  } from 'react-router';
 
 class TextCell extends Component {
   render() {
-    const {rowIndex, field, data, ...props} = this.props;
+    const {rowIndex, field, data, parent, ...props} = this.props;
     return (
-      <Cell {...props}>
+      <Cell {...props} onClick={parent.openPatient.bind(parent, data[rowIndex], parent)}>
         {data[rowIndex][field]}
       </Cell>
     );
@@ -19,9 +20,9 @@ class TextCell extends Component {
 
 class NameCell extends Component {
   render() {
-    const {rowIndex, data, ...props} = this.props;
+    const {rowIndex, data, parent, ...props} = this.props;
     return (
-      <Cell {...props}>
+      <Cell {...props} onClick={parent.openPatient.bind(parent, data[rowIndex], parent)}>
         {data[rowIndex].lastName}, {data[rowIndex].firstName}
       </Cell>
     );
@@ -30,9 +31,9 @@ class NameCell extends Component {
 
 class DoctorCell extends Component {
   render() {
-    const {rowIndex, data, ...props} = this.props;
+    const {rowIndex, data, parent, ...props} = this.props;
     return (
-      <Cell {...props}>
+      <Cell {...props} onClick={parent.openPatient.bind(parent, data[rowIndex], parent)}>
         {data[rowIndex].doctor.lastName}, {data[rowIndex].doctor.firstName}
       </Cell>
     );
@@ -44,9 +45,9 @@ class DateCell extends Component {
     return new Date(date).toLocaleDateString();
   }
   render() {
-    const {rowIndex, field, data, ...props} = this.props;
+    const {rowIndex, field, data, parent, ...props} = this.props;
     return (
-      <Cell {...props}>
+      <Cell {...props} onClick={parent.openPatient.bind(parent, data[rowIndex], parent)}>
         {this.parseDate(data[rowIndex][field])}
       </Cell>
     );
@@ -75,6 +76,9 @@ class Patients extends Component {
   initializeRouting() {
     this.unListenBrowserHistory = browserHistory.listen( location =>  {
       this.setSideDivClass(location.pathname === '/patients');
+      if (location.pathname === '/patients') {
+        this.updatePatients(); // hack for updating the list after adding a new patient
+      }
     });
   }
   setSideDivClass(patientsRoute) {
@@ -85,6 +89,10 @@ class Patients extends Component {
       .done((patients) => {
         this.setState({patients: patients});
       });
+  }
+  openPatient(row) {
+    PatientActions.setCurrentPatient(row.id);
+    browserHistory.push('/patients/' + row.id +'/profile');
   }
   render() {
     return (
@@ -103,6 +111,7 @@ class Patients extends Component {
               cell={
                 <NameCell
                   data={this.state.patients}
+                  parent={this}
                 />
               }
               width={200}
@@ -113,6 +122,7 @@ class Patients extends Component {
                 <TextCell
                   data={this.state.patients}
                   field="id"
+                  parent={this}
                 />
               }
               flexGrow={2}
@@ -123,6 +133,7 @@ class Patients extends Component {
               cell={
                 <DoctorCell
                   data={this.state.patients}
+                  parent={this}
                 />
               }
               flexGrow={1}
@@ -134,6 +145,7 @@ class Patients extends Component {
                 <DateCell
                   data={this.state.patients}
                   field="lastEntry"
+                  parent={this}
                 />
               }
               flexGrow={1}
