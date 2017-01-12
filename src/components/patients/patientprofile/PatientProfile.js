@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PatientActions from '../../../actions/PatientActions';
 import PatientsStore from '../../../stores/PatientsStore';
 import './PatientProfile.css';
 
@@ -7,9 +6,6 @@ class PatientProfile extends Component {
   constructor() {
     super();
     this.initializeValues();
-    if (!PatientsStore.currentPatientId) {
-      PatientActions.setCurrentPatient(location.pathname.replace('/patients/', '').replace('/profile', ''));
-    }
   }
   componentDidMount() {
     this.patientChangeListener = this._onPatientChange.bind(this);
