@@ -12,8 +12,8 @@ import PatientNew from './components/patients/patientnew/PatientNew';
 import PatientDetailContainer from './components/patients/patientdetailcontainer/PatientDetailContainer';
 import PatientProfile from './components/patients/patientprofile/PatientProfile';
 import PatientEdit from './components/patients/patientedit/PatientEdit';
-import PatientJournal from './components/patients/PatientJournal';
-import PatientJournalNew from './components/patients/PatientJournalNew';
+import PatientJournal from './components/patients/patientjournal/PatientJournal';
+import PatientJournalNew from './components/patients/patientjournalnew/PatientJournalNew';
 // Import Analytics
 import Analytics from './components/analytics/Analytics';
 // Import CSS

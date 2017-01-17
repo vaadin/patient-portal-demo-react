@@ -112,6 +112,26 @@ class PatientsService {
     }));
   }
 
+  addJournalEntry(data) {
+    return when(request({
+      url: 'http://localhost:8080/patients/' + data.patient.id + '/journalentries',
+      method: 'PUT',
+      crossOrigin: true,
+      type: 'json',
+      headers: {
+        'authorization': LoginStore.jwt
+      },
+      contentType: 'application/json',
+      processData: false,
+      data: JSON.stringify({
+        appointmentType: data.appointmentType,
+        date: data.date,
+        doctor: data.doctor,
+        entry: data.entry
+      })
+    }));
+  }
+
   _sortPatients() {
 
   }
