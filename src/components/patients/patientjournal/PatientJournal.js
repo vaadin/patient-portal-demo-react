@@ -6,6 +6,7 @@ import Dimensions from 'react-dimensions';
 import PatientsService from '../../../services/PatientsService';
 import PatientActions from '../../../actions/PatientActions';
 import PatientsStore from '../../../stores/PatientsStore';
+import { Link } from 'react-router';
 
 class CollapseCell extends Component {
   render() {
@@ -151,6 +152,7 @@ class PatientJournal extends Component {
   render() {
     return (
       <div className="total-width">
+        <Link to={'/patients/'+PatientsStore.currentPatientId+'/journal/new'} activeClassName="active" className="button primary add"><i className="fa fa-plus"></i> New Entry</Link>
         <div className="table-container">
           <Table
             rowsCount={PatientsStore.journalEntries.length}
