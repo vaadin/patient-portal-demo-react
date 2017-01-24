@@ -17,6 +17,26 @@ class PatientsService {
     })));
   }
 
+  getJournalEntries(id) {
+    return this._handleGetJournalEntries(when(request({
+      url: 'http://localhost:8080/patients/' + id + '/journalentries',
+      method: 'GET',
+      crossOrigin: true,
+      type: 'json',
+      headers: {
+        'authorization': LoginStore.jwt
+      }
+    })));
+  }
+
+  _handleGetJournalEntries(journalPromise) {
+    return journalPromise
+      .then(function(journals) {
+        PatientActions.setJournalEntries(journals);
+        return journals;
+      });
+  }
+
   _handleGetPatients(patientsPromise) {
     return patientsPromise
       .then(function(patients) {

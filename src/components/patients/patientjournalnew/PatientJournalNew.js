@@ -46,7 +46,6 @@ class PatientJournalNew extends Component {
   _onPatientChange() {
     if (PatientsStore.currentPatient) {
       var patient = JSON.parse(JSON.stringify(PatientsStore.currentPatient)); // create a clone
-      console.log(patient);
       patient.doctorId = patient.doctor.id;
       this.setState({patient: patient});
     }

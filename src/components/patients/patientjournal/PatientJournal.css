@@ -1,0 +1,4 @@
+.note-cell {
+  overflow-y: scroll;
+  display: block;
+}

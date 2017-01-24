@@ -12,5 +12,11 @@ export default {
       actionType: 'SET_CURRENT_PATIENT',
       id: id
     });
+  },
+  setJournalEntries: (entries) => {
+    AppDispatcher.dispatch({
+      actionType: 'SET_JOURNAL_ENTRIES',
+      entries: entries
+    });
   }
 };

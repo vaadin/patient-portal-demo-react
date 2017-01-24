@@ -8,7 +8,7 @@ class PatientDetailContainer extends Component {
   constructor() {
     super();
     if (!PatientsStore.currentPatientId) {
-      PatientActions.setCurrentPatient(location.pathname.replace('/patients/', '').replace('/profile', '').replace('/journal', ''));
+      PatientActions.setCurrentPatient(location.pathname.replace('/patients/', '').replace('/profile', '').replace('/journal', '').replace('/new', '')); // stupid hack :(
     }
   }
   render() {

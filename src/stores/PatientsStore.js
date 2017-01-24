@@ -7,7 +7,8 @@ class PatientsStore extends BaseStore {
     this.subscribe(() => this._registerToActions.bind(this));
     this._patients = [];
     this._currentPatientId = null;
-    this._currentPatient = {}; //replace to {}
+    this._currentPatient = {};
+    this._journalEntries = [];
   }
 
   _registerToActions(action) {
@@ -26,6 +27,9 @@ class PatientsStore extends BaseStore {
         this._currentPatientId = null;
         this._currentPatient = {};
         this.emitChange();
+        break;
+      case 'SET_JOURNAL_ENTRIES':
+        this._journalEntries = action.entries;
         break;
       default:
         break;
@@ -51,6 +55,10 @@ class PatientsStore extends BaseStore {
 
   get currentPatient() {
     return this._currentPatient;
+  }
+
+  get journalEntries() {
+    return this._journalEntries;
   }
 }
 
