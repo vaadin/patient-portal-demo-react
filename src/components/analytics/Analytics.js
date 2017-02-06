@@ -54,21 +54,17 @@ class Analytics extends Component {
   setChartData(type) {
     AnalyticsService.getData(type)
       .done((data) => {
-        // switch (type) {
-        //   case 'age':
-        //     this.formatAgeData(data);
-        //     break;
-        //   case 'doctor':
-        //     this.formatDoctorData(data);
-        //     break;
-        //   case 'gender':
-        //     this.formatAgeData(data);
-        //     break;
-        // }
-        // console.log(data);
-        console.log(chartData);
-        console.log(AnalyticsStore.ages);
-        this.setState({chartData: AnalyticsStore.ages}); //needed so React will update the table when PatientsStore.patients change
+        switch (type) {
+          case 'age':
+            this.setState({chartData: AnalyticsStore.ages});
+            break;
+          case 'doctor':
+            //this.setState({chartData: AnalyticsStore.doctors});
+            break;
+          case 'gender':
+            this.setState({chartData: AnalyticsStore.genders});
+            break;
+        }
       });
   }
   componentWillUnmount() {
