@@ -60,7 +60,6 @@ class AnalyticsStore extends BaseStore {
     var chartLabels = [];
     var chartData = [];
     if (typeof(data) === 'object' && data.data) {
-      console.log(data.data);
       data.data.sort(function(a, b) {
         if (a.doctor.lastName < b.doctor.lastName) {
           return -1;

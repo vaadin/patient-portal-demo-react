@@ -162,7 +162,6 @@ class PatientJournal extends Component {
                 <DateCell
                   data={PatientsStore.journalEntries}
                   field="date"
-                  parent={this}
                 />
               }
               flexGrow={1}
@@ -174,7 +173,6 @@ class PatientJournal extends Component {
                 <AppointmentCell
                   data={PatientsStore.journalEntries}
                   field="appointmentType"
-                  parent={this}
                 />
               }
               flexGrow={2}
@@ -185,7 +183,6 @@ class PatientJournal extends Component {
               cell={
                 <DoctorCell
                   data={PatientsStore.journalEntries}
-                  parent={this}
                 />
               }
               flexGrow={1}
@@ -197,7 +194,6 @@ class PatientJournal extends Component {
                 <NoteCell
                   data={PatientsStore.journalEntries}
                   field="entry"
-                  parent={this}
                   className="note-cell"
                 />
               }
