@@ -15,7 +15,7 @@ class AnalyticsStore extends BaseStore {
         this.emitChange();
         break;
       case 'SET_DOCTOR_DATA':
-        this._doctorData = action.data;
+        this._formatDoctorData(action.data);
         this.emitChange();
         break;
       case 'SET_GENDER_DATA':
@@ -47,6 +47,36 @@ class AnalyticsStore extends BaseStore {
     }
 
     this._ageData = {
+      labels: chartLabels,
+      datasets: [
+        {
+          data: chartData
+        }
+      ]
+    };
+  }
+
+  _formatDoctorData(data) {
+    var chartLabels = [];
+    var chartData = [];
+    if (typeof(data) === 'object' && data.data) {
+      console.log(data.data);
+      data.data.sort(function(a, b) {
+        if (a.doctor.lastName < b.doctor.lastName) {
+          return -1;
+        }
+        if (a.doctor.lastName > b.doctor.lastName) {
+          return 1;
+        }
+        return 0;
+      });
+      data.data.forEach(function(bar) {
+        chartLabels.push('Dr.' + bar.doctor.lastName);
+        chartData.push(bar.patients);
+      });
+    }
+
+    this._doctorData = {
       labels: chartLabels,
       datasets: [
         {

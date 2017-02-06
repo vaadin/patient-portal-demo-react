@@ -10,15 +10,6 @@ import AnalyticsStore from '../../stores/AnalyticsStore';
 const BarChart = Charts.Bar;
 const dataTypes = ['age', 'doctor', 'gender'];
 
-const chartData = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            data: [65, 59, 80, 81, 56, 55, 40],
-        }
-    ]
-};
-
 const chartOptions = {
   responsive: true
 };
@@ -59,7 +50,7 @@ class Analytics extends Component {
             this.setState({chartData: AnalyticsStore.ages});
             break;
           case 'doctor':
-            //this.setState({chartData: AnalyticsStore.doctors});
+            this.setState({chartData: AnalyticsStore.doctors});
             break;
           case 'gender':
             this.setState({chartData: AnalyticsStore.genders});
