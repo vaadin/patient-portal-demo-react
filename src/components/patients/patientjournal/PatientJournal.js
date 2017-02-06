@@ -4,13 +4,12 @@ import './PatientJournal.css';
 import {Table, Column, Cell} from 'fixed-data-table';
 import Dimensions from 'react-dimensions';
 import PatientsService from '../../../services/PatientsService';
-import PatientActions from '../../../actions/PatientActions';
 import PatientsStore from '../../../stores/PatientsStore';
 import { Link } from 'react-router';
 
 class CollapseCell extends Component {
   render() {
-    const {data, rowIndex, columnKey, collapsedRows, callback, ...props} = this.props;
+    const {rowIndex, collapsedRows, callback, ...props} = this.props;
     return (
       <Cell {...props} onClick={() => callback(rowIndex)}>
         <a>
@@ -37,7 +36,7 @@ class DateCell extends Component {
     return new Date(date).toLocaleDateString();
   }
   render() {
-    const {rowIndex, field, data, parent, ...props} = this.props;
+    const {rowIndex, field, data, ...props} = this.props;
     return (
       <Cell {...props}>
         {this.parseDate(data[rowIndex][field])}
@@ -48,7 +47,7 @@ class DateCell extends Component {
 
 class DoctorCell extends Component {
   render() {
-    const {rowIndex, data, parent, ...props} = this.props;
+    const {rowIndex, data, ...props} = this.props;
     return (
       <Cell {...props}>
         {data[rowIndex].doctor.lastName}, {data[rowIndex].doctor.firstName}
@@ -79,21 +78,10 @@ class AppointmentCell extends Component {
     return readableValue;
   }
   render() {
-    const {rowIndex, field, data, parent, ...props} = this.props;
+    const {rowIndex, field, data, ...props} = this.props;
     return (
       <Cell {...props}>
         {this.parseAppointment(data[rowIndex][field])}
-      </Cell>
-    );
-  }
-};
-
-class TextCell extends Component {
-  render() {
-    const {rowIndex, field, data, parent, ...props} = this.props;
-    return (
-      <Cell {...props}>
-        {data[rowIndex][field]}
       </Cell>
     );
   }
@@ -104,7 +92,7 @@ class NoteCell extends Component {
     return note;
   }
   render() {
-    const {rowIndex, field, data, parent, ...props} = this.props;
+    const {rowIndex, field, data, ...props} = this.props;
     return (
       <Cell {...props}>
         {this.parseDate(data[rowIndex][field])}

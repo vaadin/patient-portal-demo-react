@@ -40,7 +40,10 @@ ReactDOM.render(
         </Route>
         <Route path="/patients/:patientId/profile/edit" component={PatientEdit}/>
       </Route>
-      <Route path="analytics" component={Analytics}/>
+      <Route path="/analytics" component={Analytics}>
+        <IndexRedirect to="/analytics/age" />
+        <Route path="/analytics(/:chartType)" component={Analytics}/>
+      </Route>
     </Route>
   </Router>,
   document.getElementById('root')
